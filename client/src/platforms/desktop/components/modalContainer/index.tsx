@@ -7,6 +7,7 @@ import { ConfirmTxModalDesktop } from "platforms/desktop/components/modals/confi
 import { ConfirmExchangeModalDesktop } from "platforms/desktop/components/modals/confirmExchangeModal";
 import { LoginOnboardingModal } from "platforms/desktop/components/modals/loginOnboarding";
 import { QRCodeModal } from "../modals/showQRCode";
+import { QRCodeScannerModal } from "../modals/showQRCodeScanner";
 import { ManageAddressModal } from "../modals/manageAddressModal";
 import { RescanBCMModal } from "../modals/rescanBCModal";
 
@@ -29,6 +30,8 @@ class ModalContainer extends React.Component<any, any> {
 //        return <LoginOnboardingModal />;
       case MODAL_TYPE.RescanBC:
         return <RescanBCMModal />;
+      case MODAL_TYPE.ShowQRCodeScanner:
+        return <QRCodeScannerModal />;
     }
     return null;
   }

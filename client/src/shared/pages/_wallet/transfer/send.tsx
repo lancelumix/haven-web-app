@@ -13,6 +13,9 @@ import Input from "../../../components/_inputs/input";
 import InputButton from "../../../components/_inputs/input_button";
 import { Container } from "./styles";
 import TransferSummary from "shared/components/_summaries/transfer-summary";
+import { showModal } from "../../../actions/modal";
+import { MODAL_TYPE } from "../../../reducers/modal";
+
 
 const assetOptions: AssetOption[] = [
   { name: "Haven", ticker: Ticker.XHV },
@@ -167,8 +170,8 @@ class TransferContainer extends Component<TransferProps, TransferState> {
     }
   };
 
-  showQRCodeScannerModal = (e) => {
-    console.log(e)
+  showQRCodeScannerModal = () => {
+    this.props.showModal(MODAL_TYPE.ShowQRCodeScanner);
   };
 
   render() {
@@ -277,7 +280,6 @@ const mapStateToProps = (
   options: assetOptions,
 });
 
-export const SendFunds = connect<TransferReduxProps, {}, TransferOwnProps>(
-  mapStateToProps,
-  {}
-)(TransferContainer);
+export const SendFunds = connect<TransferReduxProps, {}, TransferOwnProps>(mapStateToProps, { 
+  showModal,
+})(TransferContainer);
