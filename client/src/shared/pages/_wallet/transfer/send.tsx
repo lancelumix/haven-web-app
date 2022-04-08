@@ -5,6 +5,7 @@ import { Ticker } from "shared/reducers/types";
 import { XBalances } from "shared/reducers/xBalance";
 import { convertBalanceToMoney, iNum } from "utility/utility";
 import Description from "../../../components/_inputs/description";
+import DescriptionButton from "../../../components/_inputs/description_button";
 import Dropdown from "../../../components/_inputs/dropdown";
 import Footer from "../../../components/_inputs/footer";
 import Form from "../../../components/_inputs/form";
@@ -166,6 +167,10 @@ class TransferContainer extends Component<TransferProps, TransferState> {
     }
   };
 
+  showQRCodeScannerModal = (e) => {
+    console.log(e)
+  };
+
   render() {
     const { selectedAsset, send_amount, recipient_address } = this.state;
 
@@ -214,28 +219,32 @@ class TransferContainer extends Component<TransferProps, TransferState> {
             onClick={this.setMaxAmount}
           />
           {windowWidth < 1380 ? (
-            <Description
+            <DescriptionButton
               label="Recipient"
               placeholder="Enter recipient's address"
-              name="recipient_address"
+              name="rx ecipient_address"
               value={recipient_address}
               width={true}
               rows={windowWidth < 600 ? "3" : "2"}
               onChange={this.handleChange}
               error={this.recipientIsValid()}
+              button={'Scan QR'}
+              onClick={this.showQRCodeScannerModal}
             />
-          ) : (
+          ) : (       
             <Fragment>
-              <Input
+              <InputButton
                 label="Recipient"
-                placeholder="Enter recipient address"
+                placeholder="Enter recipient's address"
                 width={true}
                 type={"text"}
                 name="recipient_address"
                 value={recipient_address}
                 onChange={this.handleChange}
                 error={this.recipientIsValid()}
-              />
+                button={'Scan QR'}
+                onClick={this.showQRCodeScannerModal}
+                />
             </Fragment>
           )}
         </Form>
